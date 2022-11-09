@@ -81,7 +81,6 @@ function fib(num) {
 
   return fib(num - 1) + fib(num - 2);
 }
-
 fib(8); // 21
 
 // Todo: Optimize Fibonacci Series Using Memoization
@@ -95,8 +94,43 @@ function optimizedFib(num) {
 
   cach[num] = fib(num - 1) + fib(num - 2);
 
-  console.log(cach);
   return cach[num];
 }
-
 optimizedFib(8); // 21
+
+// -------------------------------------------------------------- ########## ---------------------------------------------------------------------
+
+// ? Calculate Power
+// Todo: Using For Loop
+// Time Complexity: O(n)
+function pow1(x, n) {
+  let result = 1;
+  for (let i = 0; i < n; i++) result *= x;
+
+  return result;
+}
+pow1(2, 5);
+
+// Todo: Using Recursion
+function pow2(x, n) {
+  // Base Case
+  if (n == 1) return x;
+
+  return x * pow2(x, n - 1);
+}
+pow2(2, 5);
+
+// Todo: Optimiziation By Using "Divide & Concer"
+// We improve time complexity from "O(n) to O(log(n))"
+function pow3(x, n) {
+  // Base Case
+  if (n == 1) return x;
+
+  let res = pow3(x, Math.floor(n / 2));
+  if (n % 2 == 0) {
+    return res * res;
+  } else {
+    return res * res * x;
+  }
+}
+pow3(2, 5);

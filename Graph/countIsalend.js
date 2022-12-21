@@ -45,4 +45,4 @@ function explore(grid, r, c, visited) {
     return true;
 };
 
-console.log(countIsland(grid, 0, 1, []));
+console.log(countIsland(grid));

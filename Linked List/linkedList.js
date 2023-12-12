@@ -127,10 +127,10 @@ class List {
 
     // TODO: serch in list O(n) - loop version
     find(value) {
-        if (this.head.value == value) return 0;
+        if (this.isEmpty()) return -1;
 
-        let idx = 1,
-            curr = this.head.next;
+        let idx = 0,
+            curr = this.head;
 
         while (curr) {
             if (curr.value == value) return idx;
@@ -150,6 +150,24 @@ class List {
         if (curr.value == value) return idx;
 
         return this.recursiveFind(value, curr.next, idx + 1);
+    }
+
+    reverse() {
+        if (this.isEmpty()) return;
+
+        let prev = null,
+            curr = this.head;
+
+        while (curr) {
+            let next = curr.next;
+            curr.next = prev;
+
+            prev = curr;
+            curr = next;
+        }
+        this.head = prev;
+
+        return this.print();
     }
 
     // TODO: remove Duplicates (Sotrted List)
@@ -194,7 +212,10 @@ console.log(list.removeFrom(4));
 console.log(list.removeValue(2));
 
 // find node based on its value
-console.log(list.recursiveFind(6));
+console.log(list.find(4));
 
 // print all nodes
 console.log(list.print());
+
+// reverse the list;
+console.log(list.reverse());

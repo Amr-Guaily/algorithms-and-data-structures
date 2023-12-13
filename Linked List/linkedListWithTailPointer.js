@@ -33,7 +33,7 @@ class List2 {
      */
     set tail(tail) {
         // some validation before setting value..
-        if (!head instanceof Node2) throw new Error('Head must be an object');
+        if (!tail instanceof Node2) throw new Error('Head must be an object');
         this.#tail = tail;
     }
 
@@ -41,17 +41,13 @@ class List2 {
         return this.length == 0;
     };
 
-    // Add node at the start - O(1)
     prepend(value) {
-        // Create the new node
         const node = new Node2(value);
 
-        // list is empty => the "head" pointer should point to the newly created node
         if (this.isEmpty()) {
             this.#head = node;
             this.#tail = node;
         } else {
-            // list is not empty, then add the newly created node to the start
             node.next = this.#head;
             this.#head = node;
         }
@@ -61,13 +57,10 @@ class List2 {
     append(value) {
         const node = new Node2(value);
 
-        console.log(this.#tail);
-        // list is empty => the "head" pointer should point to the newly created node
         if (this.isEmpty()) {
             this.#head = node;
             this.#tail = node;
         } else {
-            // List is not empty, then we need to get the last node and make it point to the newly created node
             this.#tail.next = node;
             this.#tail = node;
         }
@@ -87,5 +80,7 @@ const linkedList = new List2();
 
 linkedList.prepend(2);
 linkedList.prepend(1);
+
+linkedList.append(5);
 
 console.log(linkedList.print());
